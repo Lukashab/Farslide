@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<_name>Farslide editor</_name>
+	<id>cz.lukashab.farslide.editor</id>
+	<dependency type="executable" location="extensions">farslide.py</dependency>
+	<dependency type="executable" location="extensions">simpletransform.py</dependency>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+
+
+    <param name='active_tab' type="notebook">
+        <page name="order" _gui-text="Order">
+            <_param name="order_number" type="int"   min="1"    max="1200"    _gui-text="Frame order"></_param>
+        </page>
+        <page name="groups" _gui-text="Groups">
+            <param name="groups_description1"   type="description" xml:space="preserve">1) Select parent frame.</param>
+            <param name="groups_description2"   type="description" xml:space="preserve">2) Select all child frames for selected parent frame.</param>
+            <param name="groups_description3"   type="description" xml:space="preserve">3) By clicking apply connection between child frames and parent frame will be created.</param>
+        </page>
+		<page name="export" _gui-text="Export">
+            <param name="structure_location"  _gui-text="Choose location of your content file" type="string" ></param>
+			<param name="export_location" _gui-text="Choose location, where the presentation will be stored" type="string"></param>
+			<param name="minified" type="boolean" gui-text="Lightweight version">true</param>
+        </page>
+		<page name="help" _gui-text="Help">
+            <param name="help_description"  appearance="header" type="description" xml:space="preserve">Detailed instructions.</param>
+			<param name="help_description2" type="description"  xml:space="preserve">To prepare presentation for export, you have to define groups and order of presentation frames.</param>
+			<param name="help_description3"   type="description"  xml:space="preserve">Best way to use Farslide:</param>
+			<param name="help_description4"   type="description"  xml:space="preserve">1) Define all frame groups (Group means group of frames, that are nested in another frame)</param>
+			<param name="help_description5"   type="description"  xml:space="preserve">2) Order all frames (Frame with undefined order will not be considered as frame during the export process</param>
+			<param name="help_description6"   type="description"  xml:space="preserve">3) Choose location of file with structure and content definition. Choose location, where you want to store your presentation. </param>
+			<param name="help_description7"   type="description"  xml:space="preserve">4) By checkbox value on "export" page, you can specify, whether you want to export minified version (Presentation stored in one html file without any additional js files) or not. </param>
+			<param name="help_description8"   type="description"  xml:space="preserve">5) Export the presentation by clicking apply on "export" page. Result should be stored in specified location.</param>
+
+        </page>
+    </param>
+	<effect>
+	<object-type>all</object-type>
+		<effects-menu>
+			<submenu _name="Farslide"/> <!-- which menu under Extensions -->
+		</effects-menu>
+	</effect>
+	<!-- py file again -->
+	<script>
+		<command reldir="extensions" interpreter="python">farslide.py</command>
+	</script>
+</inkscape-extension>

@@ -1,0 +1,47 @@
+#@author: Lukas Haberzettl
+#this is example of yml input file for inkscape presentation plugin
+
+#header contains basic meta information used in presentation export process
+header:
+  name: presentation name #name of presentation
+
+
+#presentation can contain two types of elements
+  #topic - element containing other elements (topic or node or even markup content). Topic is representing second type of direction (INSIDE), that can be done in presentation.
+           #From topic you can go BEFORE, AFTER, UP or INSIDE according to specific situation
+  #node - element containing markdown content, that is, at the end, transformed to html.
+          #From node you can go BEFORE, AFTER or UP according to specific situation
+
+
+presentation:
+  - node: #node
+      style:  #style attribute
+        color: white
+      content:
+        "Node content in markdown syntax"
+
+  - topic: #topic
+      content:
+        node_content:
+          "Another content in markdown syntax
+
+          ========
+
+          Lorem ipsum dolor sit amet......"
+        topic_content:
+          - node:
+              style:
+                margin: 10%
+              content:
+                "Node content in markdown syntax"
+          - node:
+              style:
+                padding: 15%
+                size-ratio: 0.5
+              content:
+                "Header
+
+                ======
+
+                content...."
+
