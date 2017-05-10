@@ -6,6 +6,7 @@
 function Content() {
     var paddingPercentil = 10;
     var SIZE_RATIO = "size-ratio";
+    var ignore_elements = ["li", "a"];
 
     /**
      * Function used to scale html content to fit the svg object
@@ -19,8 +20,9 @@ function Content() {
         parent.css("padding", "0px");
         var tag = parent.prop("tagName").toLowerCase();
         if (tag == "ul") {
-            parent.css("padding-left", (paddingPercentil * 2) + "%");
-            parent.css("text-align", "left");
+            parent.css("padding", "0.5em " + (paddingPercentil / 5) + "em");
+        } else if (!ignore_elements.includes(tag) ) {
+             parent.css("padding", "0.3em 0");
         }
         var children = parent.children();
         if (children) {

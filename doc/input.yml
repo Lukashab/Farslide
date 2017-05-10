@@ -1,15 +1,17 @@
 #@author: Lukas Haberzettl
-#this is example of yml input file for inkscape presentation plugin
+#This is example of yml input file for inkscape presentation plugin Farslide
 
-#header contains basic meta information used in presentation export process
+#header contains basic meta information used in final presentation title element
 header:
-  name: presentation name #name of presentation
-
+  name: Farslide presentation #name of presentation
+  author: Lukas Haberzettl
+  date: 10.05.2017
 
 #presentation can contain two types of elements
   #topic - element containing other elements (topic or node or even markup content). Topic is representing second type of direction (INSIDE), that can be done in presentation.
            #From topic you can go BEFORE, AFTER, UP or INSIDE according to specific situation
-  #node - element containing markdown content, that is, at the end, transformed to html.
+           #Topic can also contain only markdown content, but in this case, we recommend to use node element instead
+  #node - element containing markdown content transformed to html during the generation process.
           #From node you can go BEFORE, AFTER or UP according to specific situation
 
 
@@ -17,31 +19,38 @@ presentation:
   - node: #node
       style:  #style attribute
         color: white
-      content:
-        "Node content in markdown syntax"
+      content: |
+        Node content in markdown syntax
 
   - topic: #topic
-      content:
-        node_content:
-          "Another content in markdown syntax
-
-          ========
-
-          Lorem ipsum dolor sit amet......"
+      style:
+        color: white
+        size-ratio: 0.5
+      content: #If you want to have both the markdown content and group of elements as a topic content, you have to specify special tags.
+        node_content: |
+          Another content in markdown syntax
         topic_content:
           - node:
               style:
-                margin: 10%
+                color: white
               content:
-                "Node content in markdown syntax"
-          - node:
-              style:
-                padding: 15%
-                size-ratio: 0.5
+                Node content in markdown syntax
+          - topic:
               content:
-                "Header
+                - node:
+                    style:
+                      color: white
+                    content: |
+                      Header
+                      ======
 
-                ======
+                      content....
+                - node:
+                    style:
+                      color: white
+                    content: |
+                      Header
+                      ======
 
-                content...."
+                      content....
 

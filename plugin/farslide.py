@@ -164,7 +164,8 @@ class Farslide(inkex.Effect):
             inkex.errormsg(_("Content file location is wrong."))
             exit()
         except yaml.YAMLError as exc:
-            inkex.errormsg(_(exc))
+            inkex.errormsg(_("Bad syntax of content file - problem with parsing yml format."))
+            exit()
 
 
 
@@ -209,7 +210,7 @@ class Farslide(inkex.Effect):
 
         if len(layerDefinition) != len(svgNodes):
             inkex.errormsg(_("Content file does not match the svg content - number of frames does not match."))
-            return
+            exit()
 
         svgNodes.sort(key=lambda x: x.get(self.ORDER_ATTRIBUTE))
         index = 0
@@ -221,7 +222,7 @@ class Farslide(inkex.Effect):
             # check compatibility between content file and svg content
             if index >= (len(svgNodes)):
                 inkex.errormsg(_("Content file does not match the svg content - number of frames does not match."))
-                break
+                exit()
 
 
 
@@ -231,7 +232,7 @@ class Farslide(inkex.Effect):
                 type = self.TOPIC_TAG
             else:
                 inkex.errormsg(_("Wrong syntax of content file - bad keyword used for frame definition."))
-                continue
+                exit()
 
 
             # set content to node / topic if there is any
@@ -246,16 +247,25 @@ class Farslide(inkex.Effect):
                     svgNodes[index].set(self.CONTENT_TAG, frame[type][self.CONTENT_TAG])
                 # set content to topic
                 elif type == self.TOPIC_TAG:
-                    if self.NODE_CONTENT_TAG in frame[type][self.CONTENT_TAG].keys():
-                        if frame[type][self.CONTENT_TAG][self.NODE_CONTENT_TAG] is None:
-                            inkex.errormsg(_("Wrong syntax of content file - content attribute does not contain any value."))
-                            exit()
-                        svgNodes[index].set(self.CONTENT_TAG, frame[type][self.CONTENT_TAG][self.NODE_CONTENT_TAG])
-                    if self.TOPIC_CONTENT_TAG in frame[type][self.CONTENT_TAG].keys():
-                        if frame[type][self.CONTENT_TAG][self.TOPIC_CONTENT_TAG] is None:
-                            inkex.errormsg(_("Wrong syntax of content file - content attribute does not contain any value."))
-                            exit()
-                        self.set_presentation_content(frame[type][self.CONTENT_TAG][self.TOPIC_CONTENT_TAG], svgNodes[index].get("id"))
+
+                    '''set content according to type of topics content attribute'''
+                    if isinstance(frame[type][self.CONTENT_TAG], str):
+                        svgNodes[index].set(self.CONTENT_TAG, frame[type][self.CONTENT_TAG])
+                    elif isinstance(frame[type][self.CONTENT_TAG], list):
+                        self.set_presentation_content(frame[type][self.CONTENT_TAG],svgNodes[index].get("id"))
+
+                    else:
+                        if self.NODE_CONTENT_TAG in frame[type][self.CONTENT_TAG].keys():
+                            if frame[type][self.CONTENT_TAG][self.NODE_CONTENT_TAG] is None:
+                                inkex.errormsg(_("Wrong syntax of content file - content attribute does not contain any value."))
+                                exit()
+                            svgNodes[index].set(self.CONTENT_TAG, frame[type][self.CONTENT_TAG][self.NODE_CONTENT_TAG])
+                        if self.TOPIC_CONTENT_TAG in frame[type][self.CONTENT_TAG].keys():
+                            if frame[type][self.CONTENT_TAG][self.TOPIC_CONTENT_TAG] is None:
+                                inkex.errormsg(_("Wrong syntax of content file - content attribute does not contain any value."))
+                                exit()
+                            self.set_presentation_content(frame[type][self.CONTENT_TAG][self.TOPIC_CONTENT_TAG], svgNodes[index].get("id"))
+
 
             #set additional style attribute if there is any in structure file
             if self.STYLE_TAG in frame[type].keys():
