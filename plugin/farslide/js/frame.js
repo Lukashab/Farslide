@@ -11,10 +11,18 @@ function Frames() {
     var frameObjects = [];
 
 
+    /**
+     * FrameElements getter
+     * @returns {Array}
+     */
     this.getFrameElements = function () {
         return frameElements;
     };
 
+    /**
+     * FrameObjects getter
+     * @returns {Array}
+     */
     this.getFrameObjects = function () {
         return frameObjects;
     };
@@ -30,7 +38,7 @@ function Frames() {
     };
 
     /**
-     * Node class
+     * Frame class
      * @param id node id
      * @param order order number of node according to its layer
      * @param left left neightbour

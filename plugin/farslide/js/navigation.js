@@ -3,15 +3,15 @@
  */
 
 /**
- * Navigation class
- * @param root
- * @param timeLine
+ * Navigation class. Handle functions to initialize navigation, zoom in/out of SVG document and set animation time
  * @constructor
  */
 function Navigation() {
 
+
     this.svgRoot = document.querySelector("svg");
     this.tl = new TimelineMax({delay:.0});
+    var time = 1;
 
 
     /**
@@ -23,7 +23,7 @@ function Navigation() {
         this.tl = new TimelineMax({delay:.0});
 
         var viewBox = this.svgRoot.getBBox();
-        this.tl.to(this.svgRoot, 1 ,{attr:{viewBox:viewBox.x + " " + viewBox.y + " " + (viewBox.width + 100) + " " + (viewBox.height + 100)}})
+        this.tl.to(this.svgRoot, time ,{attr:{viewBox:viewBox.x + " " + viewBox.y + " " + (viewBox.width + 100) + " " + (viewBox.height + 100)}})
     };
     /**
      * Function to zoom in target frame area
@@ -34,9 +34,30 @@ function Navigation() {
 
         var bbox = entry.getBBox();
         //TweenMax.set(svgRoot,{attr:{viewBox:viewBox.x + " " + viewBox.y + " " + viewBox.width + " " + viewBox.height}});
-        this.tl.to(this.svgRoot, 1 ,{attr:{viewBox:bbox.x + " " + bbox.y + " " + (bbox.width) + " " + (bbox.height)}});
+        this.tl.to(this.svgRoot, time ,{attr:{viewBox:bbox.x + " " + bbox.y + " " + (bbox.width) + " " + (bbox.height)}});
 
 
+    };
+
+    /**
+     * Function to update animation time
+     */
+    this.updateTime = function()
+    {
+        //Handle time button click
+        $("#time-select input[type=submit]").on("click", function() {
+            var value = $("#time-select input[type=text]").val();
+            //validate input value (number)
+            if(isNaN(value)) {
+                alert("Animation time value have to be numeric.");
+            }
+            //handle zero animation time value
+            time = (value == 0) ? 0.001 : value;
+
+            //Show information paragraph to user for some time
+            $("#time-value").html(value);
+            $("#time-info").fadeIn().delay(3000).fadeOut();
+        });
     };
 
 

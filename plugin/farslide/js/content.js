@@ -2,7 +2,10 @@
  * Created by lukashab on 4/20/17.
  */
 
-
+/**
+ * Content class. Takes care of frame content creation.
+ * @constructor
+ */
 function Content() {
     var paddingPercentil = 10;
     var SIZE_RATIO = "size-ratio";
@@ -20,7 +23,7 @@ function Content() {
         parent.css("padding", "0px");
         var tag = parent.prop("tagName").toLowerCase();
         if (tag == "ul") {
-            parent.css("padding", "0.5em " + (paddingPercentil / 5) + "em");
+            parent.css("margin", "0.5em 0 0.5em " + (paddingPercentil / 3) + "em");
         } else if (!ignore_elements.includes(tag) ) {
              parent.css("padding", "0.3em 0");
         }
@@ -87,6 +90,17 @@ function Content() {
 
         //get coordinates and content
         var bbox = entry.getBBox();
+
+        //In case of circle typed object with r parameter, width and height borders for content computation must be doubled
+        if(entry.getAttribute("r")) {
+            var maxWidth = 2 * bbox.width;
+            var maxHeight = 2 * bbox.height;
+        } else {
+            var maxWidth = bbox.width;
+            var maxHeight = bbox.height;
+        }
+
+        //In case there is no content atribute contained in SVG element, nothing to be done here
         var content = entry.getAttribute("content");
         if (!content) return;
 
@@ -130,25 +144,24 @@ function Content() {
         var counter = 0;
         var children = resizer.children();
         //reducing font size of each element until the whole html content fits the svg element area
-        while ((resizer.width() + (2 * (paddingPercentil / 100) * bbox.width)) > bbox.width || (resizer.height() + (2 * (paddingPercentil / 100) * bbox.height)) > bbox.height) {
+        while ((resizer.width() + (2 * (paddingPercentil / 100) * bbox.width)) > maxWidth || (resizer.height() + (2 * (paddingPercentil / 100) * bbox.height)) > maxHeight) {
             children.each(function () {
                 reduceSize($(this));
             });
             counter++;
-            //to avoid cycle
-            if (counter > 1000) {
-                break;
-            }
+
         }
 
         //create inner html object and paste it to svg element
         div.innerHTML = resizer.html();
 
+        //apply additional styles specified in content atribute
         var styles = entry.getAttribute("farslide-style");
         if (styles) {
             div = setStyle(div, styles);
         }
 
+        //apend created div to html document
         body.appendChild(div);
         object.appendChild(body);
         svg.appendChild(object);

@@ -234,9 +234,11 @@ class Farslide(inkex.Effect):
                 inkex.errormsg(_("Wrong syntax of content file - bad keyword used for frame definition."))
                 exit()
 
-
+            if not isinstance(frame[type], dict):
+                inkex.errormsg(_("Wrong syntax of content file - one of the " + type + " elements does not contain any attribute"))
+                exit()
             # set content to node / topic if there is any
-            if self.CONTENT_TAG in frame[type].keys():
+            if  self.CONTENT_TAG in frame[type].keys():
 
                 if frame[type][self.CONTENT_TAG] is None:
                     inkex.errormsg(_("Wrong syntax of content file - content attribute does not contain any value."))

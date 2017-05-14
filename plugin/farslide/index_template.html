@@ -108,18 +108,69 @@
             padding: 0;
         }
 
-        /*Content styles*/
+        #time-select {
+            position: absolute;
+            padding: 1em 0 0 1em;
+        }
+        #time-select input[type=text] {
+            width: 2em;
+            display: inline-block;
+            border: none;
+            margin-right:0.5em;
+            font-size:1.2em;
+            border-bottom: #222222 2px solid;
+            background: transparent;
+        }
+        #time-select span {
+            margin-right:0.5em;
+            font-size:1.2em;
+            font-family: Arial, Helvetica;
+        }
+        #time-select input[type=submit] {
+            border: #222222 2px solid;
+            font-size:1.2em;
+            background-color: transparent;
+            font-family: Arial, Helvetica;
+        }
+        #time-select input[type=submit]:hover {
+            background-color: #c8f78a;
+            cursor: pointer;
+        }
+        #time-select p#time-info {
+            font-family: Arial, Helvetica;
+            margin-top: 0.2em;
+            font-size: 1em;
+            opacity: 0.5;
+            display:none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+       /*Content styles*/
         h1 {
-            font-size: 40px;
+            font-size: 100px;
         }
         h2 {
-            font-size: 37px;
+            font-size: 90px;
+        }
+        h3 {
+            font-size: 80px;
+        }
+        h4 {
+            font-size: 70px;
+        }
+        h5 {
+            font-size:70px;
+            opacity: 0.8;
         }
         ul, ul li {
-            font-size: 35px;
+            font-size: 70px;
         }
         p {
-            font-size: 35px;
+            font-size: 70px;
         }
     </style>
 
@@ -139,6 +190,11 @@
     <div id="down" class="active"></div>
     <div id="up" class="active"></div>
     <div id="zoom" class="active"></div>
+</div>
+<div id="time-select">
+    <input type="text" value="1"> <span>sec.</span>
+    <input type="submit" value="set">
+    <p id="time-info">Animation time set to <span id="time-value"></span> sec.</p>
 </div>
 {svg}
 
