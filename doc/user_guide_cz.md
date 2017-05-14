@@ -6,7 +6,7 @@ Vytvoření obsahu prezentace
 ----
 Jelikož plugin Farslide podporuje oddělení obsahové a grafické části prezentace (separation of content), 
 je nejprve potřeba vytvořit samostatný soubor formátu yml specifikující strukturu a obsah prezentace. 
-Formát vstupního souboru je podrobněji popsán v dokumentačním souboru [input_cz.yml](./input_cz.yml). 
+Formát vstupního souboru je podrobněji popsán v dokumentačním souboru [input_cz.yml](https://github.com/Lukashab/Farslide/blob/master/doc/input_cz.md). 
 
 Tento soubor je nutným vstupem pro úspěčný export výsledné prezentace pluginem.
  
