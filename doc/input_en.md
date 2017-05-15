@@ -2,6 +2,7 @@ Definition file specification
 ========
 Each YML definition file used for defining structure and content for farslide presentation consists of two main sections. 
 Following lines describes format and specification of these two parts.
+
 Example of file format - [inpyt.yml](input.yml)
 
 Header
