@@ -1,6 +1,6 @@
 Farslide - uživatelská příručka
 =======
-Vytvoření prezentace pomocí pluginu Farslide zahrnuje 3 části.
+Vytvoření prezentace pomocí pluginu Farslide zahrnuje 3 hlavních částí.
 
 Vytvoření obsahu prezentace
 ----
@@ -14,7 +14,7 @@ Tento soubor je nutným vstupem pro úspěšný export výsledné prezentace plu
  ---
  Grafická část prezentace se vytváří v programu Inkscape.
  
- Plugin Farslide
+ Použití pluginu Farslide
  ----
  Plugin Farslide slouží k propojení grafické a obsahové části prezentace a k exportu těchto částí do výsledného HTML souboru.
  
@@ -23,7 +23,7 @@ Tento soubor je nutným vstupem pro úspěšný export výsledné prezentace plu
  Obsah s grafikou prezentace se v prostředí pluginu propojuje dvěma funkcemi, které společně specifikují jednotlivé snímky prezentace.
  ##### Order
  Pro použití této funkce přejděte do položky **Order** v nabídce pluginu. 
- Funkce umožňuje specifikovat pořadí grafického eleentu jakožto snímku ve výsledné prezentaci.
+ Funkce umožňuje specifikovat pořadí grafického elementu jakožto snímku ve výsledné prezentaci.
  
  1. Označte vámi vytvořený grafický element v Inkscape prostředí, kterému chcete přiřadit pořadí v prezentaci.
  2. Zvolte pořadí v číselném poli.

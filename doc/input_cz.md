@@ -1,7 +1,8 @@
 Specifikace formátu obsahového souboru
 ========
 Každý YML obsahový soubor použitý pro specifikaci struktury a obsahu Farslide prezentace obsahuje dvě sekce.
-Následující řádky popisují formát a specifikaci těchto dvou sekcí
+Následující řádky popisují formát a specifikaci těchto dvou sekcí.
+Ukázka formátu vstupního obsahového souboru - [inpyt.yml](input.yml)
 
 
 header
@@ -21,7 +22,7 @@ Tato sekce obsahuje specifikaci všech snímků, které chceme mít ve výsledku
 - **topic** - Skupina snímků, která může obsahovat jak Markdown obsah, tak další snímky (**node**) nebo skupiny (**topic**).
 
 
-Snímky jsou reprezentovány YML listem obsahujícím **node** a **topic** klíčová slova.
+Snímky jsou reprezentovány YML listem obsahujícím klíčová slova **node** a **topic**.
 
 
 #### Atributy
@@ -33,6 +34,6 @@ Pokud chce uživatel do prvku **topic** přidat oba dva typy obsahu, musí speci
 - **node_content** - obsah snímku totožný s obsahem prvku **node**
 - **topic_content** - List dalších prvků typu **node** nebo **topic**
 
-####Other syntax rules
+#### Other syntax rules
 - Každý atribut musí mít vždy svou hodnotu. Pokud tomu tak není, export prezentace skončí chybou.
 
