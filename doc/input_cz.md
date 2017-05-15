@@ -7,7 +7,7 @@ Následující řádky popisují formát a specifikaci těchto dvou sekcí
 header
 ------------
 Tato sekce slouží k vložení meta informací do Vaší prezentace. Žádný z následujících atributů není povinný.
-####Atributy
+#### Atributy
 - **name** - Jméno prezentace.
 - **author** - Autor prezentace.
 - **date** - Datum vytvoření prezentace (V případě absence tohoto atributu se přidá aktuální datum).
@@ -24,7 +24,7 @@ Tato sekce obsahuje specifikaci všech snímků, které chceme mít ve výsledku
 Snímky jsou reprezentovány YML listem obsahujícím **node** a **topic** klíčová slova.
 
 
-####Atributy
+#### Atributy
 - **style** - Obsahuje dodatečné styly, které jsou přidány do HTML výsledku exportu. Byl přidán jeden speciální styl navíc oproti klasické CSS specifikaci. **size-ratio** slouží k upravení velikosti fontů obsahu snímku v závislosti na zadané poměrové hodnotě. 
 - **content** - Obsah snímku. Jedná se o text zapsaný v syntaxi jazyka Markdown (který je při exportu pluginu přetransformován na HTML formátovaný obsah). V případě prvku **topic** může obsahovat jak Markdown obsah tak ostatní nody nebo topicy.
 
